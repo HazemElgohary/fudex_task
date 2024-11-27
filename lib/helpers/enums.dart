@@ -67,7 +67,7 @@ enum ProductCategory {
     ],
   );
 
-  final List subcategories;
+  final List<SubCategory> subcategories;
   const ProductCategory({required this.subcategories});
 }
 
@@ -111,4 +111,10 @@ enum SubCategory {
   videoGames,
   toys,
   collectibles,
+}
+
+enum AdditionalEnum {
+  productColor,
+  productSize,
+  productType,
 }

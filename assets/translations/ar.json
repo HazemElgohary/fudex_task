@@ -1,5 +1,13 @@
 {
   "": "",
+  "productColor": " تحديد اللون",
+  "productSize": " تحديد المقاس ",
+  "productType": "حالة المنتج",
+  "additional": "اضافات",
+  "product_price": "سعر المنتج",
+  "sub_category": "القسم الفرعى ",
+  "main_category": "القسم الرئيسى",
+  "product_name": "اسم المنتج",
   "image_size_limit": "(لا يجب أن يتجاوز مساحة 2.5 MB)",
   "product_images": "صور المنتج",
   "edit": "تعديل",

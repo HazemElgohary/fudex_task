@@ -41,7 +41,7 @@ Future<void> main() async {
         'ar',
       ),
       child: DevicePreview(
-        enabled: true,
+        enabled: false,
         builder: (context) => MaterialApp(
           title: 'Fudex Task',
           scrollBehavior: const MaterialScrollBehavior().copyWith(

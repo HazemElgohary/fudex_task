@@ -1,5 +1,13 @@
 {
   "": "",
+  "productColor": "Pick Color",
+  "productSize": "Pick Size",
+  "productType": "Product Type",
+  "additional": "Additional",
+  "product_price": "Product Price",
+  "sub_category": "Sub Category",
+  "main_category": "Main Category",
+  "product_name": "Product Name",
   "image_size_limit": "(Must not exceed 2.5 MB in size)",
   "product_images": "Product Images",
   "edit": "Edit",

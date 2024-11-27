@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fudex_task/config/theme.dart';
 import 'package:fudex_task/helpers/extentions/context.dart';
 import 'package:fudex_task/helpers/extentions/string.dart';
@@ -79,6 +80,73 @@ class CustomSearchTextFiled extends StatelessWidget {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class CustomTextFiled extends StatelessWidget {
+  final TextEditingController controller;
+  final String? hint;
+
+  final bool isNumber;
+
+  const CustomTextFiled({
+    super.key,
+    required this.controller,
+    this.hint,
+    this.isNumber = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      style: context.textTheme.bodyMedium!.copyWith(
+        color: const Color(0XFF666666),
+      ),
+      inputFormatters: isNumber
+          ? [
+              FilteringTextInputFormatter.allow(RegExp('[0-9.]')),
+            ]
+          : null,
+      keyboardType:
+          isNumber ? const TextInputType.numberWithOptions(decimal: true) : TextInputType.text,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: const Color(0XFFF9F9F9),
+        constraints: const BoxConstraints(
+          maxHeight: 46,
+          minHeight: 46,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderSide: BorderSide(
+            color: AppColors.textFieldBorderColor.withOpacity(0.12),
+          ),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderSide: BorderSide(
+            color: AppColors.textFieldBorderColor.withOpacity(0.12),
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderSide: BorderSide(
+            color: AppColors.textFieldBorderColor.withOpacity(0.12),
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          borderSide: BorderSide(
+            color: AppColors.textFieldBorderColor.withOpacity(0.12),
+          ),
+        ),
+        hintText: hint,
+        hintStyle: context.textTheme.bodyMedium!.copyWith(
+          color: const Color(0XFFCECECE),
         ),
       ),
     );

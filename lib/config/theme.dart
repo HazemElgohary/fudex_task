@@ -9,6 +9,7 @@ class AppColors {
   static Color secondColor = const Color(0xFFBEE7E8);
 
   static Color searchBorderColor = const Color(0xFFDBDBDB);
+  static Color textFieldBorderColor = const Color(0xFF777777);
 
   static Color whiteColor = Colors.white;
   static Color blackColor = Colors.black;
