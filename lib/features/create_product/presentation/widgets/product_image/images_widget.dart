@@ -10,7 +10,10 @@ import 'package:image_picker/image_picker.dart';
 import 'image_item.dart';
 
 class ImageWidget extends StatefulWidget {
-  const ImageWidget({super.key});
+  final List<File> initialImages;
+  final ValueChanged<List<File>> onChanged;
+
+  const ImageWidget({super.key, required this.onChanged, required this.initialImages});
 
   @override
   State<ImageWidget> createState() => _ImageWidgetState();
@@ -18,6 +21,12 @@ class ImageWidget extends StatefulWidget {
 
 class _ImageWidgetState extends State<ImageWidget> {
   final images = <File>[];
+
+  @override
+  void initState() {
+    images.addAll(widget.initialImages);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,6 +104,7 @@ class _ImageWidgetState extends State<ImageWidget> {
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
       if (image != null) {
         images.add(File(image.path));
+        widget.onChanged(images);
         setState(() {});
       }
     } catch (e, st) {
@@ -105,6 +115,7 @@ class _ImageWidgetState extends State<ImageWidget> {
 
   void deleteImage(File image) {
     images.remove(image);
+    widget.onChanged(images);
     setState(() {});
   }
 }

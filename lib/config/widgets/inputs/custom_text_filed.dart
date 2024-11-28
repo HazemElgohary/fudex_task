@@ -89,6 +89,7 @@ class CustomSearchTextFiled extends StatelessWidget {
 class CustomTextFiled extends StatelessWidget {
   final TextEditingController controller;
   final String? hint;
+  final int maxLiens;
 
   final bool isNumber;
 
@@ -97,6 +98,7 @@ class CustomTextFiled extends StatelessWidget {
     required this.controller,
     this.hint,
     this.isNumber = false,
+    this.maxLiens = 1,
   });
 
   @override
@@ -111,13 +113,14 @@ class CustomTextFiled extends StatelessWidget {
               FilteringTextInputFormatter.allow(RegExp('[0-9.]')),
             ]
           : null,
+      maxLines: maxLiens,
       keyboardType:
           isNumber ? const TextInputType.numberWithOptions(decimal: true) : TextInputType.text,
       decoration: InputDecoration(
         filled: true,
         fillColor: const Color(0XFFF9F9F9),
-        constraints: const BoxConstraints(
-          maxHeight: 46,
+        constraints: BoxConstraints(
+          maxHeight: maxLiens > 1 ? 200 : 46,
           minHeight: 46,
         ),
         border: OutlineInputBorder(

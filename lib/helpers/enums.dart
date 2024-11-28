@@ -68,6 +68,7 @@ enum ProductCategory {
   );
 
   final List<SubCategory> subcategories;
+
   const ProductCategory({required this.subcategories});
 }
 
@@ -117,4 +118,17 @@ enum AdditionalEnum {
   productColor,
   productSize,
   productType,
+}
+
+enum ProductSizes {
+  S,
+  M,
+  L,
+  XL,
+  XXL,
+}
+
+enum ProductType {
+  notUsed,
+  used,
 }

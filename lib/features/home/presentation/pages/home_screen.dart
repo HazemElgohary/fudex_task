@@ -77,13 +77,14 @@ class HomeScreen extends StatelessWidget {
           ),
           child: DefaultButton(
             text: 'add_product'.tr(context),
-            onTap: () {
-              Navigator.push(
+            onTap: () async {
+              final res = await Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => const CreateProductScreen(),
                 ),
               );
+              if (res == true) {}
             },
           ),
         ),

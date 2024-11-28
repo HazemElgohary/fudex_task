@@ -5,11 +5,13 @@ import 'package:fudex_task/helpers/extentions/context.dart';
 class DefaultButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
+  final bool loading;
 
   const DefaultButton({
     super.key,
     required this.text,
     required this.onTap,
+    this.loading = false,
   });
 
   @override
@@ -24,12 +26,16 @@ class DefaultButton extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(8)),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: context.textTheme.bodyMedium!.copyWith(
-              color: AppColors.whiteColor,
-            ),
-          ),
+          child: loading
+              ? CircularProgressIndicator(
+                  color: AppColors.whiteColor,
+                )
+              : Text(
+                  text,
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    color: AppColors.whiteColor,
+                  ),
+                ),
         ),
       ),
     );

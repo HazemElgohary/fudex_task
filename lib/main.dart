@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fudex_task/config/theme.dart';
 import 'package:fudex_task/features/home/presentation/pages/home_screen.dart';
+import 'package:fudex_task/service/offline/database/db.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -20,11 +21,16 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   GetIt.instance.registerSingleton<SharedPreferences>(await SharedPreferences.getInstance());
-
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  final db = await DatabaseServices.boot();
+
+  GetIt.instance.registerSingleton(db);
+  GetIt.instance.registerSingleton(
+    DatabaseServices(),
+  );
 
   runApp(
     EasyLocalization(
