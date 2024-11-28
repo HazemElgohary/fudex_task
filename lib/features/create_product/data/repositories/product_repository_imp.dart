@@ -21,7 +21,12 @@ class ProductRepositoryImp extends ProductRepository {
   }
 
   @override
-  Future<int> updateProduct({required int id, required CreateProductDto dto}) {
+  Future<void> updateProduct({required int id, required CreateProductDto dto}) {
     return dataSource.updateProduct(id: id, dto: dto);
+  }
+
+  @override
+  Future<void> deleteProduct({required int id}) {
+    return dataSource.deleteOneById(id);
   }
 }

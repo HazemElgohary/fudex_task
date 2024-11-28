@@ -19,15 +19,17 @@ class ProductModel extends ProductEntity {
     super.type,
     required super.keywords,
     required super.description,
+    required super.isActive,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],
-      images: jsonDecode(json['images']),
+      images: List<String>.from(jsonDecode(json['images'])),
       name: json['name'],
-      mainCategory: ProductCategory.values.firstWhere((e) => e.toString() == json['mainCategory']),
-      subCategory: SubCategory.values.firstWhere((e) => e.toString() == json['subCategory']),
+      isActive: json['isActive'] == 1,
+      mainCategory: ProductCategory.values.firstWhere((e) => e.name == json['mainCategory']),
+      subCategory: SubCategory.values.firstWhere((e) => e.name == json['subCategory']),
       price: json['price'],
       colors: (jsonDecode(json['colors']) as List)
           .map(
@@ -35,11 +37,11 @@ class ProductModel extends ProductEntity {
           )
           .toList(),
       sizes: (jsonDecode(json['sizes']) as List<dynamic>)
-          .map((size) => ProductSizes.values.firstWhere((e) => e.toString() == size))
+          .map((size) => ProductSizes.values.firstWhere((e) => e.name == size))
           .toList(),
       type: json['type'] == null
           ? null
-          : ProductType.values.firstWhere((e) => e.toString() == json['type']),
+          : ProductType.values.firstWhere((e) => e.name == json['type']),
       keywords: List<String>.from(jsonDecode(json['keywords'])),
       description: json['description'],
     );

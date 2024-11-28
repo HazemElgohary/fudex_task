@@ -17,6 +17,7 @@ class CreateProductDto extends Equatable {
   final ProductType? type;
   final List<String> keywords;
   final String description;
+  final bool isActive;
 
   const CreateProductDto({
     required this.images,
@@ -29,6 +30,7 @@ class CreateProductDto extends Equatable {
     this.type,
     required this.keywords,
     required this.description,
+    required this.isActive,
   });
 
   /// Convert this object to json data.
@@ -49,6 +51,7 @@ class CreateProductDto extends Equatable {
       'mainCategory': mainCategory.name,
       'subCategory': subCategory.name,
       'price': price,
+      'isActive': isActive ? 1 : 0,
       if (type != null) 'type': type!.name,
       'description': description,
       'images': jsonEncode(convertedImages),

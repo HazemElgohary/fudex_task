@@ -6,9 +6,13 @@ abstract class ProductRepository {
     required CreateProductDto dto,
   });
 
-  Future<int> updateProduct({
+  Future<void> updateProduct({
     required int id,
     required CreateProductDto dto,
+  });
+
+  Future<void> deleteProduct({
+    required int id,
   });
 
   Future<List<ProductEntity>> findManyFromDb([String keyword = '']);

@@ -7,7 +7,7 @@ import 'package:fudex_task/helpers/enums.dart';
 class ProductEntity extends Equatable {
   static const String tableName = 'product';
   final int id;
-  final List<String> images;
+  final List<String> images; // base64
   final String name;
   final ProductCategory mainCategory;
   final SubCategory subCategory;
@@ -17,6 +17,7 @@ class ProductEntity extends Equatable {
   final ProductType? type;
   final List<String> keywords;
   final String description;
+  final bool isActive;
 
   const ProductEntity({
     required this.id,
@@ -30,6 +31,7 @@ class ProductEntity extends Equatable {
     required this.type,
     required this.keywords,
     required this.description,
+    required this.isActive,
   });
 
   static const createStatement = '''
@@ -44,6 +46,7 @@ class ProductEntity extends Equatable {
     images TEXT NOT NULL,      
     colors TEXT NOT NULL,      
     sizes TEXT NOT NULL,       
+    isActive INTEGER NOT NULL,       
     keywords TEXT NOT NULL     
 )
   ''';

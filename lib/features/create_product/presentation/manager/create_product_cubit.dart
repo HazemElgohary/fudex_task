@@ -138,6 +138,7 @@ class CreateProductCubit extends Cubit<CreateProductState> {
           sizes: selectedProductSizes,
           type: selectedType,
           keywords: keywords,
+          isActive: true,
           description: productDesController.text,
         ),
       );

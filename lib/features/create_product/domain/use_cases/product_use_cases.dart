@@ -15,7 +15,13 @@ class ProductUseCases {
     return repo.findManyFromDb();
   }
 
-  Future<int> updateProduct({required int id, required CreateProductDto dto}) {
+  Future<void> updateProduct({required int id, required CreateProductDto dto}) {
     return repo.updateProduct(id: id, dto: dto);
+  }
+
+  Future<void> deleteProduct({
+    required int id,
+  }) {
+    return repo.deleteProduct(id: id);
   }
 }
