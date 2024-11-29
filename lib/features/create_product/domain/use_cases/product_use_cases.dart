@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 
+import '../../../../helpers/enums.dart';
 import '../../../home/domain/entities/product_entity.dart';
 import '../../data/repositories/product_repository_imp.dart';
 import '../entities/create_product_dto.dart';
@@ -11,8 +12,14 @@ class ProductUseCases {
     return repo.createProduct(dto: dto);
   }
 
-  Future<List<ProductEntity>> findManyFromDb([String keyword = '']) {
-    return repo.findManyFromDb();
+  Future<List<ProductEntity>> findManyFromDb({
+    String? text,
+    ProductCategory? category,
+  }) {
+    return repo.findManyFromDb(
+      text: text,
+      category: category,
+    );
   }
 
   Future<void> updateProduct({required int id, required CreateProductDto dto}) {

@@ -45,15 +45,15 @@ class ProductEntity extends Equatable {
     mainCategory TEXT NOT NULL,
     subCategory TEXT NOT NULL,
     price TEXT NOT NULL,
-    type TEXT NOT NULL,
+    type TEXT,
     description TEXT NOT NULL,
     images TEXT NOT NULL,      
-    colors TEXT NOT NULL,      
+    colors TEXT,      
     selectedColor INTEGER,      
     selectedSize TEXT,      
-    sizes TEXT NOT NULL,       
+    sizes TEXT,       
     isActive INTEGER NOT NULL,       
-    keywords TEXT NOT NULL     
+    keywords TEXT     
 )
   ''';
 

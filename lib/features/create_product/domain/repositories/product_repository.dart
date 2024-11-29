@@ -1,3 +1,4 @@
+import '../../../../helpers/enums.dart';
 import '../../../home/domain/entities/product_entity.dart';
 import '../entities/create_product_dto.dart';
 
@@ -22,5 +23,8 @@ abstract class ProductRepository {
     required int id,
   });
 
-  Future<List<ProductEntity>> findManyFromDb([String keyword = '']);
+  Future<List<ProductEntity>> findManyFromDb({
+    String? text,
+    ProductCategory? category,
+  });
 }

@@ -22,5 +22,5 @@ abstract class BaseTableService<T> {
   /// clear the table
   Future<void> clear() => db.delete(name);
 
-  Future<List<T>> findManyFromDb([String keyword = '']);
+  Future<List<T>> findManyFromDb();
 }

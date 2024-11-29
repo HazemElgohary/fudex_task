@@ -4,6 +4,7 @@ import 'package:fudex_task/features/create_product/domain/entities/create_produc
 import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../../helpers/enums.dart';
 import '../../domain/repositories/product_repository.dart';
 
 class ProductRepositoryImp extends ProductRepository {
@@ -15,8 +16,14 @@ class ProductRepositoryImp extends ProductRepository {
   }
 
   @override
-  Future<List<ProductEntity>> findManyFromDb([String keyword = '']) {
-    return dataSource.findManyFromDb();
+  Future<List<ProductEntity>> findManyFromDb({
+    String? text,
+    ProductCategory? category,
+  }) {
+    return dataSource.findManyFromDb(
+      text: text,
+      category: category,
+    );
   }
 
   @override

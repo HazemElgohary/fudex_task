@@ -24,6 +24,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   Timer? _debounce;
 
+  String? searchText;
   void searchInList(String text) {
     if (_debounce?.isActive ?? false) {
       _debounce?.cancel();
@@ -31,7 +32,13 @@ class HomeCubit extends Cubit<HomeState> {
 
     _debounce = Timer(
       const Duration(milliseconds: 500),
-      () {},
+      () {
+        searchText = text;
+        getProducts(
+          text: text,
+          category: selectedCategory,
+        );
+      },
     );
   }
 
@@ -49,12 +56,18 @@ class HomeCubit extends Cubit<HomeState> {
   final products = <ProductEntity>[];
 
   /// get product
-  Future<void> getProducts() async {
+  Future<void> getProducts({
+    String? text,
+    ProductCategory? category,
+  }) async {
     try {
       emit(HomeGetProductLoading());
       products.clear();
       products.addAll(
-        await useCase.findManyFromDb(),
+        await useCase.findManyFromDb(
+          text: text,
+          category: category,
+        ),
       );
 
       emit(

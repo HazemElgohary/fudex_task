@@ -77,6 +77,7 @@ class ProductItem extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Image.memory(
@@ -92,13 +93,14 @@ class ProductItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 20,
                 ),
                 Expanded(
                   flex: 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
                         product.name,
@@ -110,14 +112,14 @@ class ProductItem extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SelectProductSize(
                         product: product,
                         onChanged: onSizeSelected,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       SelectItemColor(

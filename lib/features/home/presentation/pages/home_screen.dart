@@ -45,8 +45,16 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  BlocBuilder<HomeCubit, HomeState>(
+                  BlocConsumer<HomeCubit, HomeState>(
                     buildWhen: (previous, current) => current is HomePickCategory,
+                    listener: (context, state) {
+                      if (state is HomePickCategory) {
+                        cubit.getProducts(
+                          text: cubit.searchText,
+                          category: state.category,
+                        );
+                      }
+                    },
                     builder: (context, state) {
                       final cubit = BlocProvider.of<HomeCubit>(context);
                       return PickMainCategory(

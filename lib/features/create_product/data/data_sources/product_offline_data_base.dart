@@ -1,6 +1,7 @@
 import 'package:fudex_task/features/create_product/domain/entities/create_product_dto.dart';
 import 'package:fudex_task/features/home/data/models/product_model.dart';
 import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
+import 'package:fudex_task/helpers/enums.dart';
 import 'package:get_it/get_it.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -50,7 +51,32 @@ class ProductOfflineDataSource extends BaseTableService<ProductEntity> {
 
   /// Get all [Product]s data from local database.
   @override
-  Future<List<ProductEntity>> findManyFromDb([String keyword = '']) async {
-    return (await db.query(name) as List).map((e) => ProductModel.fromJson(e)).toList();
+  Future<List<ProductEntity>> findManyFromDb({
+    String? text,
+    ProductCategory? category,
+  }) async {
+    String whereClause = '';
+    List<String> whereArgs = [];
+
+    if (text != null && text.isNotEmpty) {
+      whereClause += 'name LIKE ?';
+      whereArgs.add('%$text%');
+    }
+
+    if (category != null) {
+      if (whereClause.isNotEmpty) {
+        whereClause += ' AND ';
+      }
+      whereClause += 'mainCategory = ?';
+      whereArgs.add(category.name);
+    }
+
+    final results = await db.query(
+      name,
+      where: whereClause.isEmpty ? null : whereClause,
+      whereArgs: whereArgs.isEmpty ? null : whereArgs,
+    );
+
+    return (results as List).map((e) => ProductModel.fromJson(e)).toList();
   }
 }
