@@ -29,7 +29,9 @@ class SelectProductSize extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(3)),
                   border: Border.all(
-                    color: product.selectedSize == e ? AppColors.primary : const Color(0XFFCECECE),
+                    color: product.selectedSize == e
+                        ? AppColors.primary
+                        : const Color(0XFFCECECE),
                     width: 0.6,
                   ),
                 ),

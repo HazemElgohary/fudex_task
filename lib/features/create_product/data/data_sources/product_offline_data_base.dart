@@ -2,8 +2,6 @@ import 'package:fudex_task/features/create_product/domain/entities/create_produc
 import 'package:fudex_task/features/home/data/models/product_model.dart';
 import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:fudex_task/helpers/enums.dart';
-import 'package:get_it/get_it.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../../../../service/offline/database/database_service.dart';
 

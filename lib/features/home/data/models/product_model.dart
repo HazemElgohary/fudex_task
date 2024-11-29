@@ -32,13 +32,17 @@ class ProductModel extends ProductEntity {
           )
           .toList(),
       name: json['name'],
-      selectedColor: json['selectedColor'] == null ? null : Color(json['selectedColor']),
+      selectedColor:
+          json['selectedColor'] == null ? null : Color(json['selectedColor']),
       selectedSize: json['selectedSize'] == null
           ? null
-          : ProductSizes.values.firstWhere((e) => e.name == json['selectedSize']),
+          : ProductSizes.values
+              .firstWhere((e) => e.name == json['selectedSize']),
       isActive: json['isActive'] == 1,
-      mainCategory: ProductCategory.values.firstWhere((e) => e.name == json['mainCategory']),
-      subCategory: SubCategory.values.firstWhere((e) => e.name == json['subCategory']),
+      mainCategory: ProductCategory.values
+          .firstWhere((e) => e.name == json['mainCategory']),
+      subCategory:
+          SubCategory.values.firstWhere((e) => e.name == json['subCategory']),
       price: json['price'],
       colors: (jsonDecode(json['colors']) as List)
           .map(

@@ -6,7 +6,8 @@ class PickedSizesItem extends StatelessWidget {
   final ProductSizes item;
   final ValueChanged<ProductSizes> onDelete;
 
-  const PickedSizesItem({super.key, required this.item, required this.onDelete});
+  const PickedSizesItem(
+      {super.key, required this.item, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class PickedSizesItem extends StatelessWidget {
         width: 67,
         decoration: BoxDecoration(
           color: const Color(0XFF28A6FD).withOpacity(0.16),
-          borderRadius: BorderRadius.all(Radius.circular(12)),
+          borderRadius: const BorderRadius.all(Radius.circular(12)),
         ),
         padding: const EdgeInsets.all(8),
         child: Row(

@@ -7,7 +7,8 @@ class PickProductColor extends StatelessWidget {
   final List<Color> selected;
   final ValueChanged<Color> onChanged;
 
-  PickProductColor({super.key, required this.selected, required this.onChanged});
+  PickProductColor(
+      {super.key, required this.selected, required this.onChanged});
 
   final _colors = <Color>[
     Colors.red,
@@ -44,7 +45,8 @@ class PickProductColor extends StatelessWidget {
                       height: 30,
                       width: 30,
                       decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(4)),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(4)),
                         color: e,
                       ),
                     ),

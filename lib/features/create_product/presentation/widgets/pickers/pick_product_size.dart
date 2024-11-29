@@ -8,7 +8,8 @@ class PickProductSize extends StatelessWidget {
   final List<ProductSizes> selected;
   final ValueChanged<ProductSizes> onChanged;
 
-  const PickProductSize({super.key, required this.selected, required this.onChanged});
+  const PickProductSize(
+      {super.key, required this.selected, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {

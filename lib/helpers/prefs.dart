@@ -4,14 +4,16 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class Prefs {
-  static SharedPreferences get _prefs => GetIt.instance.get<SharedPreferences>();
+  static SharedPreferences get _prefs =>
+      GetIt.instance.get<SharedPreferences>();
 
   static String getString(String key) => _prefs.getString(key) ?? '';
 
   static int getInt(String key) => _prefs.getInt(key) ?? -1;
   static bool getBool(String key) => _prefs.getBool(key) ?? false;
 
-  static Future<void> setString(String key, String value) => _prefs.setString(key, value);
+  static Future<void> setString(String key, String value) =>
+      _prefs.setString(key, value);
   static Future<void> setInt(
     String key,
     int value,

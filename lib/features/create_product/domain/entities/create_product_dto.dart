@@ -68,7 +68,8 @@ class CreateProductDto extends Equatable {
     };
   }
 
-  Future<List<ProductImageEntity>> convertFilesImageEntity(List<File> imageFiles) async {
+  Future<List<ProductImageEntity>> convertFilesImageEntity(
+      List<File> imageFiles) async {
     List<ProductImageEntity> imagesEntity = [];
 
     for (File imageFile in imageFiles) {

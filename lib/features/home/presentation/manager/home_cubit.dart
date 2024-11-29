@@ -4,7 +4,6 @@ import 'dart:developer';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fudex_task/features/create_product/domain/entities/create_product_dto.dart';
 import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:get_it/get_it.dart';
 

@@ -8,7 +8,8 @@ import '../../../../helpers/enums.dart';
 import '../../domain/repositories/product_repository.dart';
 
 class ProductRepositoryImp extends ProductRepository {
-  final dataSource = GetIt.instance.registerSingleton(ProductOfflineDataSource());
+  final dataSource =
+      GetIt.instance.registerSingleton(ProductOfflineDataSource());
 
   @override
   Future<int> createProduct({required CreateProductDto dto}) {

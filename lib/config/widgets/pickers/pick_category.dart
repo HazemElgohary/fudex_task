@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fudex_task/config/widgets/inputs/custom_text_filed.dart';
-import 'package:fudex_task/features/home/presentation/pages/home_screen.dart';
 import 'package:fudex_task/helpers/extentions/string.dart';
 
 import '../../../helpers/enums.dart';

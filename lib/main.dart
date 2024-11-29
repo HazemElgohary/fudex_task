@@ -21,7 +21,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   Bloc.observer = MyBlocObserver();
-  GetIt.instance.registerSingleton<SharedPreferences>(await SharedPreferences.getInstance());
+  GetIt.instance.registerSingleton<SharedPreferences>(
+      await SharedPreferences.getInstance());
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

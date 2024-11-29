@@ -81,7 +81,8 @@ class CreateProductScreen extends StatelessWidget {
                           current is CreateProductChangeMainCate ||
                           current is CreateProductChangeSubCate,
                       builder: (context, state) {
-                        final cubit = BlocProvider.of<CreateProductCubit>(context);
+                        final cubit =
+                            BlocProvider.of<CreateProductCubit>(context);
                         return Column(
                           children: [
                             ListTile(
@@ -89,7 +90,8 @@ class CreateProductScreen extends StatelessWidget {
                                 'main_category'.tr(context),
                               ),
                               subtitle: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 child: MainCategoryPicker(
                                   onChanged: cubit.changeMainCategory,
                                   init: cubit.selectedMainCategory,
@@ -102,9 +104,11 @@ class CreateProductScreen extends StatelessWidget {
                                   'sub_category'.tr(context),
                                 ),
                                 subtitle: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   child: SubCategoryPicker(
-                                    subs: cubit.selectedMainCategory!.subcategories,
+                                    subs: cubit
+                                        .selectedMainCategory!.subcategories,
                                     onChanged: cubit.changeSubCategory,
                                     init: cubit.selectedSubCategory,
                                   ),
@@ -135,7 +139,8 @@ class CreateProductScreen extends StatelessWidget {
                             current is CreateProductPickProductSizes;
                       },
                       builder: (context, state) {
-                        final cubit = BlocProvider.of<CreateProductCubit>(context);
+                        final cubit =
+                            BlocProvider.of<CreateProductCubit>(context);
                         return Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -144,7 +149,8 @@ class CreateProductScreen extends StatelessWidget {
                                 'additional'.tr(context),
                               ),
                               subtitle: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 child: AdditionalPicker(
                                   selected: state is CreateProductPickAdditional
                                       ? state.selected
@@ -153,13 +159,15 @@ class CreateProductScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            if (cubit.selectedAdditional.contains(AdditionalEnum.productColor)) ...[
+                            if (cubit.selectedAdditional
+                                .contains(AdditionalEnum.productColor)) ...[
                               ListTile(
                                 title: Text(
                                   'productColor'.tr(context),
                                 ),
                                 subtitle: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   child: PickProductColor(
                                     selected: cubit.selectedColors,
                                     onChanged: cubit.onColorsChange,
@@ -181,13 +189,15 @@ class CreateProductScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
-                            if (cubit.selectedAdditional.contains(AdditionalEnum.productSize)) ...[
+                            if (cubit.selectedAdditional
+                                .contains(AdditionalEnum.productSize)) ...[
                               ListTile(
                                 title: Text(
                                   'productSize'.tr(context),
                                 ),
                                 subtitle: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   child: PickProductSize(
                                     selected: cubit.selectedProductSizes,
                                     onChanged: cubit.onProductSizesChange,
@@ -209,13 +219,15 @@ class CreateProductScreen extends StatelessWidget {
                                 ),
                               ),
                             ],
-                            if (cubit.selectedAdditional.contains(AdditionalEnum.productType)) ...[
+                            if (cubit.selectedAdditional
+                                .contains(AdditionalEnum.productType)) ...[
                               ListTile(
                                 title: Text(
                                   'productType'.tr(context),
                                 ),
                                 subtitle: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
                                   child: PickProductType(
                                     selected: cubit.selectedType,
                                     onChanged: cubit.changeProductType,
@@ -228,9 +240,11 @@ class CreateProductScreen extends StatelessWidget {
                       },
                     ),
                     BlocBuilder<CreateProductCubit, CreateProductState>(
-                      buildWhen: (previous, current) => current is CreateProductPickKeywords,
+                      buildWhen: (previous, current) =>
+                          current is CreateProductPickKeywords,
                       builder: (context, state) {
-                        final cubit = BlocProvider.of<CreateProductCubit>(context);
+                        final cubit =
+                            BlocProvider.of<CreateProductCubit>(context);
                         return Column(
                           children: [
                             ListTile(
@@ -238,7 +252,8 @@ class CreateProductScreen extends StatelessWidget {
                                 'keywords'.tr(context),
                               ),
                               subtitle: Padding(
-                                padding: const EdgeInsets.symmetric(vertical: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 10),
                                 child: PickKeywords(
                                   onChanged: cubit.pickKeywords,
                                 ),
@@ -322,7 +337,8 @@ class CreateProductScreen extends StatelessWidget {
               final cubit = BlocProvider.of<CreateProductCubit>(context);
               return DefaultButton(
                 text: 'save'.tr(context),
-                onTap: product != null ? cubit.updateProduct : cubit.createProduct,
+                onTap:
+                    product != null ? cubit.updateProduct : cubit.createProduct,
                 loading: state is CreateProductLoading,
               );
             },

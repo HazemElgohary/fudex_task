@@ -46,7 +46,8 @@ class HomeScreen extends StatelessWidget {
                     height: 10,
                   ),
                   BlocConsumer<HomeCubit, HomeState>(
-                    buildWhen: (previous, current) => current is HomePickCategory,
+                    buildWhen: (previous, current) =>
+                        current is HomePickCategory,
                     listener: (context, state) {
                       if (state is HomePickCategory) {
                         cubit.getProducts(
@@ -72,18 +73,21 @@ class HomeScreen extends StatelessWidget {
                         final cubit = BlocProvider.of<HomeCubit>(context);
                         return state is HomeGetProductLoading
                             ? SkeletonListView()
-                            : state != HomeGetProductLoading() && cubit.products.isEmpty
+                            : state != HomeGetProductLoading() &&
+                                    cubit.products.isEmpty
                                 ? const Center(
                                     child: Text('لا يوجد منتجات برجاء الاضافة'),
                                   )
                                 : ListView.separated(
-                                    itemBuilder: (context, index) => ProductItem(
+                                    itemBuilder: (context, index) =>
+                                        ProductItem(
                                       product: cubit.products[index],
                                       onTap: (value) async {
                                         final res = await Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => CreateProductScreen(
+                                            builder: (context) =>
+                                                CreateProductScreen(
                                               product: value,
                                             ),
                                           ),
@@ -114,7 +118,8 @@ class HomeScreen extends StatelessWidget {
                                         );
                                       },
                                     ),
-                                    separatorBuilder: (context, index) => const SizedBox(
+                                    separatorBuilder: (context, index) =>
+                                        const SizedBox(
                                       height: 10,
                                     ),
                                     itemCount: cubit.products.length,

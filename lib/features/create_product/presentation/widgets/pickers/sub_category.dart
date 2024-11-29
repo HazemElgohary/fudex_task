@@ -8,7 +8,8 @@ class SubCategoryPicker extends StatelessWidget {
   final SubCategory? init;
   final ValueChanged<SubCategory> onChanged;
 
-  const SubCategoryPicker({super.key, this.init, required this.onChanged, required this.subs});
+  const SubCategoryPicker(
+      {super.key, this.init, required this.onChanged, required this.subs});
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,8 @@ class PickedKeywordsItem extends StatelessWidget {
   final String item;
   final ValueChanged<String> onDelete;
 
-  const PickedKeywordsItem({super.key, required this.item, required this.onDelete});
+  const PickedKeywordsItem(
+      {super.key, required this.item, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {

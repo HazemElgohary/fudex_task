@@ -58,7 +58,8 @@ class ViewImageItem extends StatelessWidget {
                     )
                   : image != null
                       ? ClipRRect(
-                          borderRadius: const BorderRadius.all(Radius.circular(9)),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(9)),
                           child: Image.file(
                             image!,
                             fit: BoxFit.cover,

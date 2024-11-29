@@ -91,7 +91,8 @@ class ProductItem extends StatelessWidget {
                         product.images.first.base64Image,
                       ),
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) => SkeletonItem(
+                      errorBuilder: (context, error, stackTrace) =>
+                          SkeletonItem(
                         child: Container(
                           height: 90,
                           color: Colors.grey,

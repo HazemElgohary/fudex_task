@@ -13,7 +13,8 @@ class ImageWidget extends StatefulWidget {
   final List<File> initialImages;
   final ValueChanged<List<File>> onChanged;
 
-  const ImageWidget({super.key, required this.onChanged, required this.initialImages});
+  const ImageWidget(
+      {super.key, required this.onChanged, required this.initialImages});
 
   @override
   State<ImageWidget> createState() => _ImageWidgetState();
@@ -77,8 +78,11 @@ class _ImageWidgetState extends State<ImageWidget> {
                                 bottom: 10,
                               ),
                               child: ViewImageItem(
-                                image: index < images.length ? images[index] : null,
-                                onAdd: index == (images.length) ? pickImage : null,
+                                image: index < images.length
+                                    ? images[index]
+                                    : null,
+                                onAdd:
+                                    index == (images.length) ? pickImage : null,
                                 onDelete: deleteImage,
                               ),
                             ),

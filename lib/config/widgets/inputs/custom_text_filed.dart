@@ -114,8 +114,9 @@ class CustomTextFiled extends StatelessWidget {
             ]
           : null,
       maxLines: maxLiens,
-      keyboardType:
-          isNumber ? const TextInputType.numberWithOptions(decimal: true) : TextInputType.text,
+      keyboardType: isNumber
+          ? const TextInputType.numberWithOptions(decimal: true)
+          : TextInputType.text,
       decoration: InputDecoration(
         filled: true,
         fillColor: const Color(0XFFF9F9F9),

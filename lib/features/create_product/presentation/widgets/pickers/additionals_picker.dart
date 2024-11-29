@@ -8,7 +8,8 @@ class AdditionalPicker extends StatelessWidget {
   final List<AdditionalEnum> selected;
   final ValueChanged<AdditionalEnum> onChanged;
 
-  const AdditionalPicker({super.key, required this.selected, required this.onChanged});
+  const AdditionalPicker(
+      {super.key, required this.selected, required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
