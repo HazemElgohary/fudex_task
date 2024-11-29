@@ -26,7 +26,11 @@ class ProductModel extends ProductEntity {
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['id'],
-      images: List<String>.from(jsonDecode(json['images'])),
+      images: (jsonDecode(json['images']) as List)
+          .map(
+            (e) => ProductImageModel.fromJson(e),
+          )
+          .toList(),
       name: json['name'],
       selectedColor: json['selectedColor'] == null ? null : Color(json['selectedColor']),
       selectedSize: json['selectedSize'] == null
@@ -49,6 +53,20 @@ class ProductModel extends ProductEntity {
           : ProductType.values.firstWhere((e) => e.name == json['type']),
       keywords: List<String>.from(jsonDecode(json['keywords'])),
       description: json['description'],
+    );
+  }
+}
+
+class ProductImageModel extends ProductImageEntity {
+  const ProductImageModel({
+    required super.path,
+    required super.base64Image,
+  });
+
+  factory ProductImageModel.fromJson(Map<String, dynamic> json) {
+    return ProductImageModel(
+      path: json['path'],
+      base64Image: json['base64Image'],
     );
   }
 }

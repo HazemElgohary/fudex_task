@@ -79,6 +79,19 @@ class HomeScreen extends StatelessWidget {
                                 : ListView.separated(
                                     itemBuilder: (context, index) => ProductItem(
                                       product: cubit.products[index],
+                                      onTap: (value) async {
+                                        final res = await Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => CreateProductScreen(
+                                              product: value,
+                                            ),
+                                          ),
+                                        );
+                                        if (res == true) {
+                                          cubit.getProducts();
+                                        }
+                                      },
                                       onDelete: (value) {
                                         cubit.deleteProduct(id: value.id);
                                       },

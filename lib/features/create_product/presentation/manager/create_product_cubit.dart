@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fudex_task/features/create_product/domain/entities/create_product_dto.dart';
 import 'package:fudex_task/features/create_product/domain/use_cases/product_use_cases.dart';
+import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../helpers/enums.dart';
@@ -13,9 +14,38 @@ import '../../../../helpers/enums.dart';
 part 'create_product_state.dart';
 
 class CreateProductCubit extends Cubit<CreateProductState> {
-  CreateProductCubit() : super(CreateProductInitial());
+  final ProductEntity? product;
+
+  CreateProductCubit({this.product}) : super(CreateProductInitial()) {
+    if (product != null) {
+      setInitialData();
+    }
+  }
 
   final useCase = GetIt.instance.get<ProductUseCases>();
+
+  void setInitialData() {
+    images.clear();
+    for (final image in product!.images) {
+      images.add(File(image.path));
+    }
+    productName.text = product!.name;
+    price.text = product!.price;
+    productDesController.text = product!.description;
+    selectedMainCategory = product!.mainCategory;
+    selectedSubCategory = product!.subCategory;
+    selectedAdditional.addAll(
+      [
+        if (product!.colors.isNotEmpty) AdditionalEnum.productColor,
+        if (product!.sizes.isNotEmpty) AdditionalEnum.productSize,
+        if (product!.type != null) AdditionalEnum.productType,
+      ],
+    );
+    selectedColors.addAll(product!.colors);
+    selectedProductSizes.addAll(product!.sizes);
+    selectedType = product!.type;
+    keywords.addAll(product!.keywords);
+  }
 
   final images = <File>[];
 
@@ -128,6 +158,35 @@ class CreateProductCubit extends Cubit<CreateProductState> {
       validate();
       emit(CreateProductLoading());
       await useCase.createProduct(
+        dto: CreateProductDto(
+          images: images,
+          name: productName.text,
+          mainCategory: selectedMainCategory!,
+          subCategory: selectedSubCategory!,
+          price: price.text,
+          colors: selectedColors,
+          sizes: selectedProductSizes,
+          type: selectedType,
+          keywords: keywords,
+          isActive: true,
+          description: productDesController.text,
+        ),
+      );
+
+      emit(CreateProductSuccess());
+    } catch (e, st) {
+      log(e.toString());
+      log(st.toString());
+      emit(CreateProductError(error: e.toString()));
+    }
+  }
+
+  Future<void> updateProduct() async {
+    try {
+      validate();
+      emit(CreateProductLoading());
+      await useCase.updateProduct(
+        id: product!.id,
         dto: CreateProductDto(
           images: images,
           name: productName.text,

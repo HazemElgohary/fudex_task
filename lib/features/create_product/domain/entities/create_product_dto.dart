@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:equatable/equatable.dart';
+import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 
 import '../../../../helpers/enums.dart';
 
@@ -35,7 +36,7 @@ class CreateProductDto extends Equatable {
 
   /// Convert this object to json data.
   Future<Map<String, dynamic>> toMap() async {
-    final convertedImages = await convertFilesToBase64(images);
+    final convertedImages = await convertFilesImageEntity(images);
     final convertedColors = colors
         .map(
           (e) => e.value,
@@ -56,22 +57,31 @@ class CreateProductDto extends Equatable {
       'isActive': isActive ? 1 : 0,
       if (type != null) 'type': type!.name,
       'description': description,
-      'images': jsonEncode(convertedImages),
+      'images': jsonEncode(convertedImages
+          .map(
+            (e) => e.toMap(),
+          )
+          .toList()),
       'colors': jsonEncode(convertedColors),
       'sizes': jsonEncode(convertedSizes),
       'keywords': jsonEncode(keywords),
     };
   }
 
-  Future<List<String>> convertFilesToBase64(List<File> imageFiles) async {
-    List<String> base64Images = [];
+  Future<List<ProductImageEntity>> convertFilesImageEntity(List<File> imageFiles) async {
+    List<ProductImageEntity> imagesEntity = [];
 
     for (File imageFile in imageFiles) {
       final imageBytes = await imageFile.readAsBytes();
-      base64Images.add(base64Encode(imageBytes));
+      imagesEntity.add(
+        ProductImageEntity(
+          path: imageFile.path,
+          base64Image: base64Encode(imageBytes),
+        ),
+      );
     }
 
-    return base64Images;
+    return imagesEntity;
   }
 
   @override

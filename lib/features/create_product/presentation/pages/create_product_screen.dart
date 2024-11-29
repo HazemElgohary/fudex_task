@@ -6,6 +6,7 @@ import 'package:fudex_task/features/create_product/presentation/widgets/picked_c
 import 'package:fudex_task/features/create_product/presentation/widgets/pickers/main_category.dart';
 import 'package:fudex_task/features/create_product/presentation/widgets/pickers/pick_keywords.dart';
 import 'package:fudex_task/features/create_product/presentation/widgets/product_image/images_widget.dart';
+import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:fudex_task/helpers/extentions/context.dart';
 import 'package:fudex_task/helpers/extentions/string.dart';
 
@@ -21,12 +22,14 @@ import '../widgets/pickers/pick_product_type.dart';
 import '../widgets/pickers/sub_category.dart';
 
 class CreateProductScreen extends StatelessWidget {
-  const CreateProductScreen({super.key});
+  final ProductEntity? product;
+
+  const CreateProductScreen({super.key, this.product});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => CreateProductCubit(),
+      create: (context) => CreateProductCubit(product: product),
       child: Scaffold(
         appBar: AppBar(
           elevation: 1,
@@ -319,7 +322,7 @@ class CreateProductScreen extends StatelessWidget {
               final cubit = BlocProvider.of<CreateProductCubit>(context);
               return DefaultButton(
                 text: 'save'.tr(context),
-                onTap: cubit.createProduct,
+                onTap: product != null ? cubit.updateProduct : cubit.createProduct,
                 loading: state is CreateProductLoading,
               );
             },

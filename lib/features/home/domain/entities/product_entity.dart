@@ -7,7 +7,7 @@ import 'package:fudex_task/helpers/enums.dart';
 class ProductEntity extends Equatable {
   static const String tableName = 'product';
   final int id;
-  final List<String> images; // base64
+  final List<ProductImageEntity> images; // base64
   final String name;
   final ProductCategory mainCategory;
   final SubCategory subCategory;
@@ -59,7 +59,7 @@ class ProductEntity extends Equatable {
 
   ProductEntity copyWith({
     int? id,
-    List<String>? images, // base6,
+    List<ProductImageEntity>? images, // base6,
     String? name,
     ProductCategory? mainCategory,
     SubCategory? subCategory,
@@ -104,5 +104,39 @@ class ProductEntity extends Equatable {
         type,
         keywords,
         description,
+      ];
+}
+
+class ProductImageEntity extends Equatable {
+  final String path;
+  final String base64Image;
+
+  const ProductImageEntity({
+    required this.path,
+    required this.base64Image,
+  });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'path': path,
+      'base64Image': base64Image,
+    };
+  }
+
+  // Future<List<String>> convertFilesToBase64(List<File> imageFiles) async {
+  //   List<String> base64Images = [];
+  //
+  //   for (File imageFile in imageFiles) {
+  //     final imageBytes = await imageFile.readAsBytes();
+  //     base64Images.add(base64Encode(imageBytes));
+  //   }
+  //
+  //   return base64Images;
+  // }
+
+  @override
+  List<Object?> get props => [
+        path,
+        base64Image,
       ];
 }
