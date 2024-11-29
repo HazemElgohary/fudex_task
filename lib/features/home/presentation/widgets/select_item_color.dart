@@ -4,14 +4,12 @@ import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 
 class SelectItemColor extends StatelessWidget {
   final ProductEntity product;
-  final Color? selected;
   final ValueChanged<Color> onChanged;
 
   const SelectItemColor({
     super.key,
     required this.product,
     required this.onChanged,
-    this.selected,
   });
 
   @override
@@ -31,7 +29,7 @@ class SelectItemColor extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(3)),
                   color: e,
-                  border: selected == e
+                  border: product.selectedColor == e
                       ? Border.all(
                           color: AppColors.primary,
                           width: 1.4,

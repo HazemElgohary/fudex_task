@@ -24,4 +24,18 @@ class ProductUseCases {
   }) {
     return repo.deleteProduct(id: id);
   }
+
+  Future<int> updateAvailabilityProduct({
+    required int id,
+    bool? isActive,
+    int? color,
+    String? size,
+  }) {
+    return repo.updateAvailabilityProduct(
+      id: id,
+      isActive: isActive,
+      size: size,
+      color: color,
+    );
+  }
 }

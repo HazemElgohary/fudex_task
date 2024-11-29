@@ -5,6 +5,7 @@ import 'package:fudex_task/config/theme.dart';
 import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:fudex_task/features/home/presentation/widgets/select_item_color.dart';
 import 'package:fudex_task/features/home/presentation/widgets/select_product_size.dart';
+import 'package:fudex_task/helpers/enums.dart';
 import 'package:fudex_task/helpers/extentions/context.dart';
 import 'package:fudex_task/helpers/extentions/string.dart';
 import 'package:skeletons/skeletons.dart';
@@ -12,13 +13,17 @@ import 'package:skeletons/skeletons.dart';
 class ProductItem extends StatelessWidget {
   final ProductEntity product;
   final ValueChanged<ProductEntity> onDelete;
-  final ValueChanged<ProductEntity> onActivation;
+  final ValueChanged<bool> onActivation;
+  final ValueChanged<Color> onColorSelected;
+  final ValueChanged<ProductSizes> onSizeSelected;
 
   const ProductItem({
     super.key,
     required this.product,
     required this.onDelete,
     required this.onActivation,
+    required this.onColorSelected,
+    required this.onSizeSelected,
   });
 
   @override
@@ -48,12 +53,16 @@ class ProductItem extends StatelessWidget {
                   ),
                 ),
                 Switch.adaptive(
-                  value: true,
+                  value: product.isActive,
                   activeColor: AppColors.primary,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    onActivation(value);
+                  },
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onDelete(product);
+                  },
                   icon: const Icon(
                     Icons.delete_outline,
                     color: Colors.red,
@@ -106,14 +115,14 @@ class ProductItem extends StatelessWidget {
                       ),
                       SelectProductSize(
                         product: product,
-                        onChanged: (value) {},
+                        onChanged: onSizeSelected,
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       SelectItemColor(
                         product: product,
-                        onChanged: (value) {},
+                        onChanged: onColorSelected,
                       ),
                     ],
                   ),

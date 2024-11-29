@@ -64,19 +64,40 @@ class HomeScreen extends StatelessWidget {
                         final cubit = BlocProvider.of<HomeCubit>(context);
                         return state is HomeGetProductLoading
                             ? SkeletonListView()
-                            : ListView.separated(
-                                itemBuilder: (context, index) => ProductItem(
-                                  product: cubit.products[index],
-                                  onDelete: (value) {
-                                    cubit.deleteProduct(id: value.id);
-                                  },
-                                  onActivation: (value) {},
-                                ),
-                                separatorBuilder: (context, index) => const SizedBox(
-                                  height: 10,
-                                ),
-                                itemCount: cubit.products.length,
-                              );
+                            : state != HomeGetProductLoading() && cubit.products.isEmpty
+                                ? const Center(
+                                    child: Text('لا يوجد منتجات برجاء الاضافة'),
+                                  )
+                                : ListView.separated(
+                                    itemBuilder: (context, index) => ProductItem(
+                                      product: cubit.products[index],
+                                      onDelete: (value) {
+                                        cubit.deleteProduct(id: value.id);
+                                      },
+                                      onActivation: (value) {
+                                        cubit.updateProduct(
+                                          product: cubit.products[index],
+                                          isActive: value,
+                                        );
+                                      },
+                                      onColorSelected: (value) {
+                                        cubit.updateProduct(
+                                          product: cubit.products[index],
+                                          color: value,
+                                        );
+                                      },
+                                      onSizeSelected: (value) {
+                                        cubit.updateProduct(
+                                          product: cubit.products[index],
+                                          size: value,
+                                        );
+                                      },
+                                    ),
+                                    separatorBuilder: (context, index) => const SizedBox(
+                                      height: 10,
+                                    ),
+                                    itemCount: cubit.products.length,
+                                  );
                       },
                     ),
                   ),

@@ -15,7 +15,7 @@ part 'create_product_state.dart';
 class CreateProductCubit extends Cubit<CreateProductState> {
   CreateProductCubit() : super(CreateProductInitial());
 
-  final useCase = GetIt.instance.registerSingleton(ProductUseCases());
+  final useCase = GetIt.instance.get<ProductUseCases>();
 
   final images = <File>[];
 

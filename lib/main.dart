@@ -15,6 +15,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'bloc_observer.dart';
+import 'features/create_product/domain/use_cases/product_use_cases.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +32,7 @@ Future<void> main() async {
   GetIt.instance.registerSingleton(
     DatabaseServices(),
   );
+  GetIt.instance.registerSingleton(ProductUseCases());
 
   runApp(
     EasyLocalization(

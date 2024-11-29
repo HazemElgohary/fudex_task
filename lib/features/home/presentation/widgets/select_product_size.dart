@@ -7,13 +7,11 @@ import 'package:fudex_task/helpers/extentions/context.dart';
 class SelectProductSize extends StatelessWidget {
   final ProductEntity product;
   final ValueChanged<ProductSizes> onChanged;
-  final ProductSizes? selected;
 
   const SelectProductSize({
     super.key,
     required this.product,
     required this.onChanged,
-    this.selected,
   });
 
   @override
@@ -31,7 +29,7 @@ class SelectProductSize extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(3)),
                   border: Border.all(
-                    color: selected == e ? AppColors.primary : const Color(0XFFCECECE),
+                    color: product.selectedSize == e ? AppColors.primary : const Color(0XFFCECECE),
                     width: 0.6,
                   ),
                 ),
@@ -40,7 +38,9 @@ class SelectProductSize extends StatelessWidget {
                   child: Text(
                     e.name,
                     style: context.textTheme.bodySmall!.copyWith(
-                      color: selected == e ? AppColors.blackColor : const Color(0XFFA9A9A9),
+                      color: product.selectedSize == e
+                          ? AppColors.blackColor
+                          : const Color(0XFFA9A9A9),
                       fontSize: 9.6,
                     ),
                   ),

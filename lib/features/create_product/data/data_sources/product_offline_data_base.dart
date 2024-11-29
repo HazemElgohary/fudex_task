@@ -31,6 +31,23 @@ class ProductOfflineDataSource extends BaseTableService<ProductEntity> {
     );
   }
 
+  Future<int> updateAvailabilityProduct({
+    required int id,
+    bool? isActive,
+    int? color,
+    String? size,
+  }) async {
+    return db.update(
+      name,
+      {
+        if (isActive != null) 'isActive': isActive ? 1 : 0,
+        if (color != null) 'selectedColor': color,
+        if (size != null) 'selectedSize': size,
+      },
+      where: 'id="$id"',
+    );
+  }
+
   /// Get all [Product]s data from local database.
   @override
   Future<List<ProductEntity>> findManyFromDb([String keyword = '']) async {

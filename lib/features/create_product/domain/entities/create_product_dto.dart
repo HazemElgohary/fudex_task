@@ -51,6 +51,8 @@ class CreateProductDto extends Equatable {
       'mainCategory': mainCategory.name,
       'subCategory': subCategory.name,
       'price': price,
+      if (convertedColors.isNotEmpty) 'selectedColor': convertedColors.first,
+      if (convertedSizes.isNotEmpty) 'selectedSize': convertedSizes.first,
       'isActive': isActive ? 1 : 0,
       if (type != null) 'type': type!.name,
       'description': description,

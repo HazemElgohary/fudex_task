@@ -11,6 +11,13 @@ abstract class ProductRepository {
     required CreateProductDto dto,
   });
 
+  Future<int> updateAvailabilityProduct({
+    required int id,
+    bool? isActive,
+    int? color,
+    String? size,
+  });
+
   Future<void> deleteProduct({
     required int id,
   });

@@ -3,7 +3,6 @@ import 'package:fudex_task/features/create_product/domain/entities/create_produc
 
 import 'package:fudex_task/features/home/domain/entities/product_entity.dart';
 import 'package:get_it/get_it.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../../domain/repositories/product_repository.dart';
 
@@ -28,5 +27,20 @@ class ProductRepositoryImp extends ProductRepository {
   @override
   Future<void> deleteProduct({required int id}) {
     return dataSource.deleteOneById(id);
+  }
+
+  @override
+  Future<int> updateAvailabilityProduct({
+    required int id,
+    bool? isActive,
+    int? color,
+    String? size,
+  }) {
+    return dataSource.updateAvailabilityProduct(
+      id: id,
+      isActive: isActive,
+      size: size,
+      color: color,
+    );
   }
 }

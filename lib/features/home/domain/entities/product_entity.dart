@@ -13,7 +13,9 @@ class ProductEntity extends Equatable {
   final SubCategory subCategory;
   final String price;
   final List<Color> colors;
+  final Color? selectedColor;
   final List<ProductSizes> sizes;
+  final ProductSizes? selectedSize;
   final ProductType? type;
   final List<String> keywords;
   final String description;
@@ -28,7 +30,9 @@ class ProductEntity extends Equatable {
     required this.price,
     required this.colors,
     required this.sizes,
-    required this.type,
+    this.selectedColor,
+    this.selectedSize,
+    this.type,
     required this.keywords,
     required this.description,
     required this.isActive,
@@ -45,11 +49,47 @@ class ProductEntity extends Equatable {
     description TEXT NOT NULL,
     images TEXT NOT NULL,      
     colors TEXT NOT NULL,      
+    selectedColor INTEGER,      
+    selectedSize TEXT,      
     sizes TEXT NOT NULL,       
     isActive INTEGER NOT NULL,       
     keywords TEXT NOT NULL     
 )
   ''';
+
+  ProductEntity copyWith({
+    int? id,
+    List<String>? images, // base6,
+    String? name,
+    ProductCategory? mainCategory,
+    SubCategory? subCategory,
+    String? price,
+    List<Color>? colors,
+    Color? selectedColor,
+    List<ProductSizes>? sizes,
+    ProductSizes? selectedSize,
+    ProductType? type,
+    List<String>? keywords,
+    String? description,
+    bool? isActive,
+  }) {
+    return ProductEntity(
+      id: id ?? this.id,
+      images: images ?? this.images,
+      name: name ?? this.name,
+      mainCategory: mainCategory ?? this.mainCategory,
+      subCategory: subCategory ?? this.subCategory,
+      price: price ?? this.price,
+      colors: colors ?? this.colors,
+      sizes: sizes ?? this.sizes,
+      type: type ?? this.type,
+      selectedSize: selectedSize ?? this.selectedSize,
+      selectedColor: selectedColor ?? this.selectedColor,
+      keywords: keywords ?? this.keywords,
+      description: description ?? this.description,
+      isActive: isActive ?? this.isActive,
+    );
+  }
 
   @override
   List<Object?> get props => [

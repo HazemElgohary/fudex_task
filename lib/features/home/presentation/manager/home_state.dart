@@ -61,6 +61,33 @@ final class HomeDeleteProductError extends HomeState {
       ];
 }
 
+final class HomeUpdateProductLoading extends HomeState {
+  @override
+  List<Object?> get props => [];
+}
+
+final class HomeUpdateProductSuccess extends HomeState {
+  final List<ProductEntity> products;
+
+  HomeUpdateProductSuccess({required this.products});
+
+  @override
+  List<Object?> get props => [
+        products,
+      ];
+}
+
+final class HomeUpdateProductError extends HomeState {
+  final String error;
+
+  HomeUpdateProductError({required this.error});
+
+  @override
+  List<Object?> get props => [
+        error,
+      ];
+}
+
 final class HomePickCategory extends HomeState {
   final ProductCategory category;
 

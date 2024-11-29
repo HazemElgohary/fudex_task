@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 import 'dart:ui';
 
 import 'package:fudex_task/helpers/enums.dart';
@@ -16,6 +15,8 @@ class ProductModel extends ProductEntity {
     required super.price,
     required super.colors,
     required super.sizes,
+    super.selectedColor,
+    super.selectedSize,
     super.type,
     required super.keywords,
     required super.description,
@@ -27,6 +28,10 @@ class ProductModel extends ProductEntity {
       id: json['id'],
       images: List<String>.from(jsonDecode(json['images'])),
       name: json['name'],
+      selectedColor: json['selectedColor'] == null ? null : Color(json['selectedColor']),
+      selectedSize: json['selectedSize'] == null
+          ? null
+          : ProductSizes.values.firstWhere((e) => e.name == json['selectedSize']),
       isActive: json['isActive'] == 1,
       mainCategory: ProductCategory.values.firstWhere((e) => e.name == json['mainCategory']),
       subCategory: SubCategory.values.firstWhere((e) => e.name == json['subCategory']),
